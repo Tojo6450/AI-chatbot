@@ -25,7 +25,7 @@ try{
     await sendMail(email, "ChatBot", otp);
 
     res.json({
-      message: "Otp send to your mail",
+      message: "Otp sent to your mail",
       verifyToken,
     });
   } catch (error) {
@@ -67,4 +67,16 @@ const VerifyUser = async(req,res)=>{
 
 }
 
-module.exports = {register,VerifyUser};
+ const myProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+module.exports = {register,VerifyUser,myProfile};
