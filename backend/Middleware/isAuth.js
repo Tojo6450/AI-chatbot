@@ -1,19 +1,19 @@
 const jwt =require("jsonwebtoken")
 const User =require("../models/user")
 
-const protect = async(req,res,next)=>{
+const isAuth = async(req,res,next)=>{
     try{
-    const {token} = req.body;
+   let token = req.headers.authorization;
 
     if(token && token.startsWith("Bearer")){
         token=token.split(" ")[1];
         const decode = jwt.verify(token,process.env.JWt_SECRETS);
         req.user = await User.findById(decode._id);
-         next()
+        return next()
     }
 
     else {
-        res.status(403).json({message:"Login first"})
+       return res.status(403).json({message:"Login first"})
     }
    }
    catch(err){
@@ -21,4 +21,4 @@ const protect = async(req,res,next)=>{
    }
 }
 
-module.exports = {protect}; 
+module.exports = {isAuth}; 

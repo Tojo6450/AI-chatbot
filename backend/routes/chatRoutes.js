@@ -1,5 +1,7 @@
 const express = require("express")
-const {newSession,getAllsession,getConversation,addConversation} = require("../controller/chatController")
+const {newSession,getAllsession,getConversation,addConversation,deleteChat} = require("../controller/chatController");
+const { isAuth } = require("../Middleware/isAuth");
+
 
 const router = express.Router();
 
