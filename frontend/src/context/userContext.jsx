@@ -41,7 +41,7 @@ export const UserProvider = ({children}) =>{
            
            toast.success(data.message)
            localStorage.clear();
-           localStorage.setItem("verifyToken",data.token)
+           localStorage.setItem("verifyToken",data.token);
            navigate("/")
            setIsAuth(true)
            setUser(data.user)
