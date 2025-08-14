@@ -8,7 +8,7 @@ export const UserProvider = ({children}) =>{
 
     const [btnloading,setBtnloading] = useState(false);
      
-    const registeruser = async (email,navigate) =>{
+    const registeruser = async (name,email,navigate) =>{
         setBtnloading(true);
         try{
              const {data} = await axios.post(`${server}/api/user/register`, {name,email});
